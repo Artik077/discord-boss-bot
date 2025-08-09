@@ -1,0 +1,272 @@
+{
+  "Shila": {
+    "jp": "シーラー",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Moof": {
+    "jp": "ムーフ",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Ukanba": {
+    "jp": "ウカンバ",
+    "respawn": "18h",
+    "chance": 100
+  },
+  "Normus": {
+    "jp": "ノルムス",
+    "respawn": "18h",
+    "chance": 100
+  },
+  "Talakin": {
+    "jp": "タラキン",
+    "respawn": "7h",
+    "chance": 100
+  },
+  "Cabrio": {
+    "jp": "カブリオ",
+    "respawn": "12h",
+    "chance": 50
+  },
+  "PanNarod": {
+    "jp": "パンナロード",
+    "respawn": "3h",
+    "chance": 50
+  },
+  "Hisilrome": {
+    "jp": "ヒシルローメ",
+    "respawn": "6h",
+    "chance": 50
+  },
+  "Felis": {
+    "jp": "フェリス",
+    "respawn": "2h",
+    "chance": 50
+  },
+  "Valefar": {
+    "jp": "テンペスト",
+    "respawn": "3h30m",
+    "chance": 50
+  },
+  "Flynt": {
+    "jp": "フリント",
+    "respawn": "8h",
+    "chance": 33
+  },
+  "Repiro": {
+    "jp": "レピロ",
+    "respawn": "5h",
+    "chance": 50
+  },
+  "Stone": {
+    "jp": "スタン",
+    "respawn": "4h",
+    "chance": 100
+  },
+  "Timitris": {
+    "jp": "ティミトリス",
+    "respawn": "5h",
+    "chance": 100
+  },
+  "Matura": {
+    "jp": "マトゥラ",
+    "respawn": "4h",
+    "chance": 50
+  },
+  "Medusa": {
+    "jp": "メデューサ",
+    "respawn": "7h",
+    "chance": 100
+  },
+  "4F": {
+    "jp": "汚染されたクルマ",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "6F": {
+    "jp": "カタン",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Chertuba": {
+    "jp": "チェルトゥバ",
+    "respawn": "3h",
+    "chance": 50
+  },
+  "Enkura": {
+    "jp": "エンクラ",
+    "respawn": "3h30m",
+    "chance": 50
+  },
+  "Talkin": {
+    "jp": "タルキン",
+    "respawn": "5h",
+    "chance": 33
+  },
+  "Timiniel": {
+    "jp": "ティミニエル",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Breka": {
+    "jp": "ブレカ",
+    "respawn": "4h",
+    "chance": 50
+  },
+  "QA": {
+    "jp": "クイーンアント",
+    "respawn": "6h",
+    "chance": 33
+  },
+  "Behemoth": {
+    "jp": "ベヒモス",
+    "respawn": "6h",
+    "chance": 100
+  },
+  "Basil": {
+    "jp": "バシラ",
+    "respawn": "2h30m",
+    "chance": 50
+  },
+  "MC": {
+    "jp": "ミュータントクルマ",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Lily": {
+    "jp": "ブラックリリー",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Sarka": {
+    "jp": "サルカ",
+    "respawn": "7h",
+    "chance": 100
+  },
+  "Landor": {
+    "jp": "ランドール",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Gahareth": {
+    "jp": "ガレス",
+    "respawn": "6h",
+    "chance": 50
+  },
+  "Andras": {
+    "jp": "アンドラス",
+    "respawn": "12h",
+    "chance": 50
+  },
+  "Samuel": {
+    "jp": "サミュエル",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Core": {
+    "jp": "コアサセプタ",
+    "respawn": "12h",
+    "chance": 33
+  },
+  "Tronba": {
+    "jp": "トロンバ",
+    "respawn": "4h30m",
+    "chance": 50
+  },
+  "Glaki": {
+    "jp": "グラーキ",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Balbo": {
+    "jp": "バルボ",
+    "respawn": "8h",
+    "chance": 50
+  },
+  "Selu": {
+    "jp": "セル",
+    "respawn": "7h30m",
+    "chance": 33
+  },
+  "PanDraeed": {
+    "jp": "パンドライド",
+    "respawn": "8h",
+    "chance": 100
+  },
+  "Savan": {
+    "jp": "サヴァン",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Coroon": {
+    "jp": "コルーン",
+    "respawn": "10h",
+    "chance": 100
+  },
+  "DB": {
+    "jp": "ドラゴンビースト",
+    "respawn": "12h",
+    "chance": 33
+  },
+  "Kelsus": {
+    "jp": "ケルソス",
+    "respawn": "6h",
+    "chance": 50
+  },
+  "Mirror": {
+    "jp": "忘却の鏡",
+    "respawn": "12h",
+    "chance": 100
+  },
+  "Olfen": {
+    "jp": "オルフェン",
+    "respawn": "24h",
+    "chance": 33
+  },
+  "Haf": {
+    "jp": "ハーフ",
+    "respawn": "24h",
+    "chance": 33
+  },
+  "Cyrax": {
+    "jp": "サイラックス",
+    "respawn": "24h",
+    "chance": 50
+  },
+  "Modeus": {
+    "jp": "モデウス",
+    "respawn": "24h",
+    "chance": 33
+  },
+  "Naiad": {
+    "jp": "ナイアード",
+    "respawn": "12h",
+    "chance": 50
+  },
+  "Valak": {
+    "jp": "ヴァラク",
+    "respawn": "24h",
+    "chance": 50
+  },
+  "Olkuth": {
+    "jp": "オルクト",
+    "respawn": "24h",
+    "chance": 50
+  },
+  "Rahha": {
+    "jp": "ラーハ",
+    "respawn": "33h",
+    "chance": 50
+  },
+  "Phoenix": {
+    "jp": "フェニックス",
+    "respawn": "24h",
+    "chance": 50
+  },
+  "Thanatos": {
+    "jp": "タナトス",
+    "respawn": "24h",
+    "chance": 50
+  }
+}
