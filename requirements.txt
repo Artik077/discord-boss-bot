@@ -2,3 +2,4 @@ discord.py
 pytz
 opencv-python-headless
 Pillow
+flask
