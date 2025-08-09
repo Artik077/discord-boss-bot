@@ -3,7 +3,7 @@ from discord.ext import commands, tasks
 import datetime
 import pytz
 from boss_data import get_boss_statuses, register_kill, reset_all_bosses
-from config import TOKEN, PREFIX
+from config import PREFIX  # Токен тепер беремо з os.getenv нижче
 
 import os
 import re
@@ -143,4 +143,3 @@ async def update_status_func():
 
 token = os.getenv("DISCORD_TOKEN")
 bot.run(token)
-

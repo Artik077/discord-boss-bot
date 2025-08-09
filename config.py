@@ -1,5 +1,5 @@
 import os
 
-token = os.getenv("DISCORD_TOKEN")
-bot.run(token)
+TOKEN = os.getenv("DISCORD_TOKEN")  # або ж вручну, якщо хочеш
+PREFIX = "!"  # приклад префікса
 
