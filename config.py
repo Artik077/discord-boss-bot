@@ -1,2 +1,5 @@
 import os
-DISCORD_TOKEN = os.getenv("DISCORD_TOKEN")
+
+token = os.getenv("DISCORD_TOKEN")
+bot.run(token)
+

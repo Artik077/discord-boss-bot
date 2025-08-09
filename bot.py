@@ -1,6 +1,3 @@
-import easyocr
-reader = easyocr.Reader(['en'])
-
 import discord
 from discord.ext import commands, tasks
 import datetime
@@ -8,24 +5,26 @@ import pytz
 from boss_data import get_boss_statuses, register_kill, reset_all_bosses
 from config import TOKEN, PREFIX
 
-from PIL import Image
-import io
-import numpy as np
-import cv2
 import os
-import difflib
 import re
-
-os.makedirs("temp", exist_ok=True)
 
 intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix=PREFIX, intents=intents)
 
-channel_id = 1401743260036104192  # ← replace with your channel ID
+channel_id = 1401743260036104192  # ← заміни на свій ID каналу
 status_message_ids = []
 
 MAX_MESSAGE_LENGTH = 2000
+
+KNOWN_BOSSES = [
+    "Shila", "Moof", "Ukanba", "Normus", "Talakin", "Cabrio", "PanNarod", "Hisilrome", "Felis", "Valefar", "Flynt",
+    "Repiro", "Stonegeist", "Timitris", "Matura", "Medusa", "Contaminated Cruma", "Katan", "Chertuba", "Enkura",
+    "Talkin", "Timiniel", "Breka", "Queen Ant", "Behemoth", "Basila", "Mutated Cruma", "Black Lily", "Sarka", "Landor",
+    "Gahareth", "Andras", "Samuel", "Core Susceptor", "Tromba", "Glaki", "Balbo", "Selu", "Pan Dra'eed", "Savan",
+    "Coroon", "Dragon Beast", "Kelsus", "Mirror of Oblivion", "Orfen", "Haff", "Cyrax", "Modeus", "Naiad", "Valak",
+    "Olkuth", "Rahha", "Phoenix", "Thanatos"
+]
 
 def split_message(text, max_length=MAX_MESSAGE_LENGTH):
     lines = text.split('\n')
@@ -41,70 +40,6 @@ def split_message(text, max_length=MAX_MESSAGE_LENGTH):
     if current_chunk:
         chunks.append(current_chunk)
     return chunks
-
-def preprocess_image_for_ocr(np_image):
-    gray = cv2.cvtColor(np_image, cv2.COLOR_BGR2GRAY)
-    processed = cv2.adaptiveThreshold(gray, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C,
-                                      cv2.THRESH_BINARY, 11, 2)
-    processed = cv2.medianBlur(processed, 3)
-    return processed
-
-KNOWN_BOSSES = [
-    "Shila", "Moof", "Ukanba", "Normus", "Talakin", "Cabrio", "PanNarod", "Hisilrome", "Felis", "Valefar", "Flynt",
-    "Repiro", "Stonegeist", "Timitris", "Matura", "Medusa", "Contaminated Cruma", "Katan", "Chertuba", "Enkura",
-    "Talkin", "Timiniel", "Breka", "Queen Ant", "Behemoth", "Basila", "Mutated Cruma", "Black Lily", "Sarka", "Landor",
-    "Gahareth", "Andras", "Samuel", "Core Susceptor", "Tromba", "Glaki", "Balbo", "Selu", "Pan Dra'eed", "Savan",
-    "Coroon", "Dragon Beast", "Kelsus", "Mirror of Oblivion", "Orfen", "Haff", "Cyrax", "Modeus", "Naiad", "Valak",
-    "Olkuth", "Rahha", "Phoenix", "Thanatos"
-]
-
-def extract_boss_times_from_image(image_bytes):
-    image = Image.open(io.BytesIO(image_bytes)).convert('RGB')
-    open_cv_image = np.array(image)
-    open_cv_image = cv2.cvtColor(open_cv_image, cv2.COLOR_RGB2BGR)
-
-    processed_image = preprocess_image_for_ocr(open_cv_image)
-    results = reader.readtext(processed_image, detail=0)
-
-    text = "\n".join(results)
-    print("===== EasyOCR RAW TEXT =====")
-    print(text)
-    print("============================")
-
-    lines = [line.strip() for line in text.splitlines() if line.strip()]
-
-    boss_entries = []
-    pattern = re.compile(r'(\d{4}/\d{2}/\d{2})[\s,]?(\d{2})[:.]?(\d{2})')
-
-    i = 0
-    while i < len(lines):
-        line = lines[i]
-
-        possible_name = line.split()[0]
-        match = difflib.get_close_matches(possible_name, KNOWN_BOSSES, n=1, cutoff=0.6)
-
-        if match:
-            boss_name = match[0]
-            time_found = False
-
-            for j in range(i + 1, min(i + 4, len(lines))):
-                time_line = lines[j]
-                time_match = pattern.search(time_line)
-
-                if time_match:
-                    date, hh, mm = time_match.groups()
-                    boss_entries.append((boss_name, f"{hh}{mm}"))  # no colon in time_str for register_kill
-                    time_found = True
-                    break
-
-            if not time_found:
-                print(f"⚠️ No time found for {boss_name}")
-
-            i += 1
-        else:
-            i += 1
-
-    return boss_entries
 
 @bot.event
 async def on_ready():
@@ -142,32 +77,6 @@ async def on_message(message):
         await message.channel.send(f"✅ {boss_name} recorded at {time_str[:2]}:{time_str[2:]}")
         await update_status_func()
         return
-
-    if len(message.attachments) == 2:
-        # Your existing 2 attachments handling code
-        ...
-
-    if message.attachments:
-        recognized_any = False
-        for attachment in message.attachments:
-            if attachment.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
-                img_bytes = await attachment.read()
-                boss_list = extract_boss_times_from_image(img_bytes)
-                if boss_list:
-                    recognized_any = True
-                    reply_lines = []
-                    for boss_name, time_str in boss_list:
-                        register_kill(boss_name, time_str)
-                        reply_lines.append(f"✅ {boss_name} recorded at {time_str[:2]}:{time_str[2:]}")
-                    msg = await message.channel.send("\n".join(reply_lines))
-                    await msg.add_reaction("🫡")
-                else:
-                    await message.add_reaction("💩")
-                    await message.channel.send("❌ No valid boss times found in the image.")
-
-        if recognized_any:
-            await update_status_func()
-            return
 
     content = message.content.strip()
     parts = content.split()
@@ -231,4 +140,7 @@ async def update_status_func():
             status_message_ids.append(msg.id)
         except Exception as e:
             print(f"❌ Failed to send status: {e}")
+
+token = os.getenv("DISCORD_TOKEN")
+bot.run(token)
 
