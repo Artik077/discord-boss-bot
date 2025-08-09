@@ -3,3 +3,4 @@ pytz
 opencv-python
 numpy
 Pillow
+easyocr
